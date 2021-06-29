@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+body{
+	margin  :0;
+	padding :0;
+	background-color:#1c8adb;
+	
+}
+.signinform
+{
+	width: 300px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+	background: #fff;
+	padding: 20px;
+	margin: 8% auto;
+	text-align : center
+}
+.input-box{
+	border-radius : 20px;
+	padding: 10px;
+	margin: 10px 0;
+	width:80%;
+	border: 1px solid #999;
+	outline:none;
+}
+.button{
+	width: 80%;
+	padding:10px;
+	border-radius:20px;
+	font-size:15px;
+	margin:10xp 0;
+	border: none;
+	outline: none;
+	cursor:pointer;
+	color:#fff;
+	background-color: #1c8adb;
+}
+
+
+
+
+
+
+
+
+
