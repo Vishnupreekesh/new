@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,9 @@ public class SigninServlet extends HttpServlet {
 			else {
 				if(pass.equals(obj.getPassword())){
 					out.print("Login Successfully");
+					Cookie cookie=new Cookie("email",email);
+					cookie.setMaxAge(365*60*60*24);
+					respond.addCookie(cookie);
 				}
 				else {
 					out.print("Invalid Password");
