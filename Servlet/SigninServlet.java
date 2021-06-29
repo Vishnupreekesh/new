@@ -14,9 +14,6 @@ import Main.Connector;
 import Main.Password;
 import Main.User;
 
-
-
-@WebServlet("/Signin")
 public class SigninServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
