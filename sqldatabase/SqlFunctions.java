@@ -8,15 +8,12 @@ import java.sql.Statement;
 
 public class SqlFunctions {
 	
-	public void create() {
-		
-	}
-	 
-	public void alter() {
-		
-	}
-	public void delete() {
-		
+	public static int insert(String query) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");  
+		Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/userdatabase","root","Vishnu21@");  
+		Statement stmt=con.createStatement();
+		int rs=stmt.executeUpdate(query);
+		return rs;
 	}
 	
 	public static ResultSet select(String query) throws SQLException, ClassNotFoundException {
@@ -25,6 +22,15 @@ public class SqlFunctions {
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
 		return rs;
+	}
+
+	public static int update(String query) throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");  
+		Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/userdatabase","root","Vishnu21@");  
+		Statement stmt=con.createStatement();
+		int rs=stmt.executeUpdate(query);
+		return rs;
+		
 	}
 
 }

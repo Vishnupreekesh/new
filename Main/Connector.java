@@ -7,6 +7,16 @@ import sqldatabase.Query;
 
 public class Connector {
 	
+	public static boolean userAvailable(String email) throws ClassNotFoundException, SQLException {
+		ResultSet rs=Query.isAvailable(email);
+		int count=0;
+		while(rs.next()) {
+			count=1;
+		}
+		if(count==0) return false;
+		else return true;
+	}
+	
 	public static User signin(String email) throws ClassNotFoundException, SQLException {
 		
 		String firstname;
@@ -18,7 +28,6 @@ public class Connector {
 		ResultSet rs=Query.signinQuery(email);
         
 		User user=null;
-		int flag=0;
 		while(rs.next()) {
 			if(user==null) user=new User();
 			firstname=user.setFirstname(rs.getString(1));

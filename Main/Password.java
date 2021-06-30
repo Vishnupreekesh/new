@@ -7,7 +7,23 @@ import java.sql.SQLException;
 public class Password {
 
 	
-	public static void changePassword() {
+	public static boolean validatePassword(String password) {
+		
+		if(password.isEmpty()) return false;
+		
+		if(password.length()>7){
+            boolean hasDigit=false,hasCapital=false,hasSmall=false,hasSpecial=false;
+            for(int i=0;i<password.length();i++) {
+                char c = password.charAt(i);
+                if (Character.isDigit(c)) hasDigit = true;
+                else if (Character.isLowerCase(c)) hasSmall = true;
+                else if (Character.isUpperCase(c)) hasCapital = true;
+                else hasSpecial = true;
+            }
+            if(hasDigit==true&&hasCapital==true&&hasSmall==true&&hasSpecial==true) return true;
+            else return false;
+        }
+        return false;
 		
 	}
 	

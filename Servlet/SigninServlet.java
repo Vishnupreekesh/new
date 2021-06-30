@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,10 +28,11 @@ public class SigninServlet extends HttpServlet {
 			}
 			else {
 				if(pass.equals(obj.getPassword())){
-					out.print("Login Successfully");
 					Cookie cookie=new Cookie("email",email);
 					cookie.setMaxAge(365*60*60*24);
 					respond.addCookie(cookie);
+					request.setAttribute("User",obj);
+					request.getRequestDispatcher("Home.jsp").forward(request, respond);
 				}
 				else {
 					out.print("Invalid Password");
@@ -43,6 +43,10 @@ public class SigninServlet extends HttpServlet {
 		} catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+public void doGet(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
 		
 	}
 

@@ -35,7 +35,15 @@ body{
 	color:#fff;
 	background-color: #1c8adb;
 }
-
+.signupform
+{
+	width: 300px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+	background: #fff;
+	padding: 20px;
+	margin: 8% auto;
+	text-align : center
+}
 
 
 
