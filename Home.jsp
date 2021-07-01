@@ -6,18 +6,27 @@
 <meta charset="ISO-8859-1">
 <title>HOME PAGE</title>
 </head>
+
 <body>
+		<div class="signinform">
+		<form action="Home" method="post">
+			<%@ page import="javax.servlet.http.HttpSession" %>
+			<%
+			String name=(String)session.getAttribute("name");  
+				if(name!=null){  	
+					Cookie cookie = new Cookie("SESSIONID", session.getId());
+					cookie.setMaxAge(Integer.MAX_VALUE);
+					response.addCookie(cookie);
+  					out.print("<h3>Hello, "+name+"</h3><br>");  
+				}  
+				else{  
+    				out.print("Please login first");  
+    				response.sendRedirect("Signin.html");
+    			}  
+			%>
+			<input type="submit" class="button" value="Logout"><br>
+		</form>
+		</div>
 </body>
-<%@ page import="Main.User" %>
-<%
-		Cookie cookies=null;
-  		Cookie[] cookie=request.getCookies();
-  		System.out.print(cookie[0].getValue());
-		for(int i=0;i<cookie.length;i++){
-			cookies=cookie[i];
-			if(cookies.getName().equals("FName")||cookies.getName().equals("Sname")){
-			out.println("<h1>Welcome "+cookies.getValue()+"<h1>");
-			}
-		}
-%>
+
 </html>

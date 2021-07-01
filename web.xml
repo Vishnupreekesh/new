@@ -34,4 +34,15 @@
   <servlet-name>changepass</servlet-name>
   <url-pattern>/ChangePassword</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>logout</servlet-name>
+  <servlet-class>Servlet.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>logout</servlet-name>
+  <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

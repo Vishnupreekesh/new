@@ -10,6 +10,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import Main.Connector;
 import Main.Password;
 import Main.User;
@@ -28,9 +30,13 @@ public class SigninServlet extends HttpServlet {
 			}
 			else {
 				if(pass.equals(obj.getPassword())){
-					Cookie cookie=new Cookie("FName",obj.getFirstname());
-					cookie.setMaxAge(10);
-					respond.addCookie(cookie);
+					
+					HttpSession session=request.getSession();  
+			        session.setAttribute("name",obj.getFirstname());  
+					
+//					Cookie cookie=new Cookie("FName",obj.getFirstname());
+//					cookie.setMaxAge(10);
+//					respond.addCookie(cookie);
 					respond.sendRedirect("Home.jsp");
 				}
 				else {
