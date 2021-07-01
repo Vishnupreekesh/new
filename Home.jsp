@@ -10,8 +10,14 @@
 </body>
 <%@ page import="Main.User" %>
 <%
-  		User user=(User)request.getAttribute("User");
-		String str=user.getName();
-		out.print("Welcome "+str);
+		Cookie cookies=null;
+  		Cookie[] cookie=request.getCookies();
+  		System.out.print(cookie[0].getValue());
+		for(int i=0;i<cookie.length;i++){
+			cookies=cookie[i];
+			if(cookies.getName().equals("FName")||cookies.getName().equals("Sname")){
+			out.println("<h1>Welcome "+cookies.getValue()+"<h1>");
+			}
+		}
 %>
 </html>

@@ -34,11 +34,10 @@ public class SignupServlet extends HttpServlet{
 					password=Password.doHashing(password);
 					if(Query.createuser(firstname, lastname, email, password)) {
 						User obj=Connector.signin(email);
-						Cookie cookie=new Cookie("email",email);
-						cookie.setMaxAge(365*60*60*24);
+						Cookie cookie=new Cookie("Sname",obj.getFirstname());
+						cookie.setMaxAge(10);
 						response.addCookie(cookie);
-						request.setAttribute("User",obj);
-						request.getRequestDispatcher("Home.jsp").forward(request, response);
+						response.sendRedirect("Home.jsp");
 						
 					}
 					else out.print("Something went wrong try again");

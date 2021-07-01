@@ -28,11 +28,10 @@ public class SigninServlet extends HttpServlet {
 			}
 			else {
 				if(pass.equals(obj.getPassword())){
-					Cookie cookie=new Cookie("email",email);
-					cookie.setMaxAge(365*60*60*24);
+					Cookie cookie=new Cookie("FName",obj.getFirstname());
+					cookie.setMaxAge(10);
 					respond.addCookie(cookie);
-					request.setAttribute("User",obj);
-					request.getRequestDispatcher("Home.jsp").forward(request, respond);
+					respond.sendRedirect("Home.jsp");
 				}
 				else {
 					out.print("Invalid Password");
