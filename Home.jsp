@@ -25,6 +25,13 @@
     			}  
 			%>
 			<input type="submit" class="button" value="Logout"><br>
+			
+		</form>
+		
+		<form action="profile" method="post">
+		
+			<br><input type="submit" class="button" value="Profile">
+		
 		</form>
 		</div>
 </body>

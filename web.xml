@@ -5,16 +5,18 @@
     <welcome-file>Signin.html</welcome-file>  
   </welcome-file-list>
   
-  <filter>  
-  <filter-name>f1</filter-name>  
-  <filter-class>Servlet.SigninFilter</filter-class>  
-  </filter>  
-  <filter-mapping>  
-  <filter-name>f1</filter-name>  
-  <url-pattern>/Signin</url-pattern>  
-  </filter-mapping>  
-    
- <servlet>
+  
+-<filter>
+<filter-name>f1</filter-name>
+<filter-class>Servlet.SigninFilter</filter-class>
+</filter>
+
+-<filter-mapping>
+<filter-name>f1</filter-name>
+<url-pattern>/Signin</url-pattern>
+</filter-mapping>
+  
+  <servlet>
   <servlet-name>signinform</servlet-name>
   <servlet-class>Servlet.SigninServlet</servlet-class>
   </servlet>
@@ -23,8 +25,7 @@
   <servlet-name>signinform</servlet-name>
   <url-pattern>/Signin</url-pattern>
   </servlet-mapping>  
-  
-  
+   
   <servlet>
   <servlet-name>signupform</servlet-name>
   <servlet-class>Servlet.SignupServlet</servlet-class>
@@ -55,10 +56,17 @@
   <url-pattern>/Home</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>profile</servlet-name>
+  <servlet-class>Servlet.Profile</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  <servlet-name>profile</servlet-name>
+  <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
   
-  
-  
-  
+ 
+   
   
 </web-app>
