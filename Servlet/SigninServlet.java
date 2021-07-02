@@ -18,34 +18,18 @@ import Main.User;
 
 public class SigninServlet extends HttpServlet {
 	
-	public void doPost(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String email=request.getParameter("email");
-		String password=request.getParameter("password");
+		
 		try {
-			String pass=Password.doHashing(password);
 			User obj=Connector.signin(email);
-			PrintWriter out=respond.getWriter();
-			if(obj==null) {
-				out.print("Invalid Username");
-			}
-			else {
-				if(pass.equals(obj.getPassword())){
-					
-					HttpSession session=request.getSession();  
-			        session.setAttribute("name",obj.getFirstname());  
-					
-//					Cookie cookie=new Cookie("FName",obj.getFirstname());
-//					cookie.setMaxAge(10);
-//					respond.addCookie(cookie);
-					respond.sendRedirect("Home.jsp");
-				}
-				else {
-					out.print("Invalid Password");
-				}
-			}
-				
-					
-		} catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
+			System.out.print(obj.getFirstname());
+			HttpSession session=request.getSession();  
+	        session.setAttribute("name",obj.getFirstname()); 
+			response.sendRedirect("Home.jsp");
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
