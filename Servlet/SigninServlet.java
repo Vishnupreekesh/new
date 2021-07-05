@@ -20,15 +20,34 @@ public class SigninServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+
 		
 		try {
+			String pass=Password.doHashing(password);
 			User obj=Connector.signin(email);
-			System.out.print(obj.getFirstname());
-			HttpSession session=request.getSession();  
-	        session.setAttribute("name",obj.getFirstname()); 
-			response.sendRedirect("Home.jsp");
+			PrintWriter out=response.getWriter();
+
+			if(obj==null) {
+				out.print("Invalid Username");
+			}
+			else {
+				if(pass.equals(obj.getPassword())){
+					System.out.print(obj.getFirstname());
+					HttpSession session=request.getSession();  
+			        session.setAttribute("name",obj.getFirstname()); 
+					response.sendRedirect("Home.jsp");
+				
+				}
+				else {
+					out.print("Invalid Password");
+				}
+			}
 			
-		} catch (ClassNotFoundException | SQLException e) {
+			
+			
+			
+		} catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

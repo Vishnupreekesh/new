@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Main.Connector;
 import Main.Password;
@@ -34,10 +35,14 @@ public class SignupServlet extends HttpServlet{
 					password=Password.doHashing(password);
 					if(Query.createuser(firstname, lastname, email, password)) {
 						User obj=Connector.signin(email);
-						Cookie cookie=new Cookie("Sname",obj.getFirstname());
-						cookie.setMaxAge(10);
-						response.addCookie(cookie);
+						
+						HttpSession session=request.getSession();  
+				        session.setAttribute("name",obj.getFirstname()); 
 						response.sendRedirect("Home.jsp");
+//						Cookie cookie=new Cookie("Sname",obj.getFirstname());
+//						cookie.setMaxAge(10);
+//						response.addCookie(cookie);
+//						response.sendRedirect("Home.jsp");
 						
 					}
 					else out.print("Something went wrong try again");

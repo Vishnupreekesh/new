@@ -10,6 +10,7 @@
 
 <h3>In Profile</h3>
 <% 
+	
 	String name=(String)session.getAttribute("name");  
 	out.print("<h3>Hello, "+name+"</h3><br>");  
 

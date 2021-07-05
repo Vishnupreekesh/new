@@ -1,6 +1,11 @@
 package Servlet;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import Main.Connector;
 import Main.Password;
 import Main.User;
@@ -10,42 +15,44 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;  
 
+
 public class SigninFilter implements Filter {
 	
-	private ServletContext context;
 	public void init(FilterConfig fConfig) throws ServletException {
-        this.context = fConfig.getServletContext();
-        this.context.log("AuthenticationFilter initialized");
+        
     }
 
     
 	public void doFilter(ServletRequest request, ServletResponse response,  FilterChain chain) throws IOException, ServletException {
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		 
-
-		try {
-			String pass=Password.doHashing(password);
-			User obj=Connector.signin(email);
-			PrintWriter out=response.getWriter();
-
-			if(obj==null) {
-				out.print("Invalid Username");
+		System.out.print("In Filter");
+		HttpServletRequest req=(HttpServletRequest) request;
+		HttpSession session =req.getSession();
+		
+		String[] str= {"/Signup","/Signup.html","/ChangePassword.html","/ChangePassword","/signin.css","/Signin"};
+		
+		boolean loginRequest1=false;
+		for(int i=0;i<str.length;i++) {
+			String loginURI = req.getContextPath() +str[i];
+			if(req.getRequestURI().equals(loginURI)) {
+				loginRequest1 = true;
+				break;
 			}
-			else {
-				if(pass.equals(obj.getPassword())){
-					chain.doFilter(request, response);
-				
-				}
-				else {
-					out.print("Invalid Password");
-				}
-			}
-				
-					
-		} catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
-			e.printStackTrace();
 		}
+		
+		System.out.print(loginRequest1);
+		 boolean loggedIn = session != null && session.getAttribute("name") != null;
+		 
+		 String path= req.getRequestURI();
+		 System.out.println(path);
+		 
+		if(loggedIn || loginRequest1 ) {
+			
+			chain.doFilter(request, response);
+		}
+		else {
+			req.getRequestDispatcher("Signin.html").forward(request, response);
+		}
+		
 	}
 
 }
