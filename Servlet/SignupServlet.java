@@ -38,11 +38,7 @@ public class SignupServlet extends HttpServlet{
 						
 						HttpSession session=request.getSession();  
 				        session.setAttribute("name",obj.getFirstname()); 
-						response.sendRedirect("Home.jsp");
-//						Cookie cookie=new Cookie("Sname",obj.getFirstname());
-//						cookie.setMaxAge(10);
-//						response.addCookie(cookie);
-//						response.sendRedirect("Home.jsp");
+						response.sendRedirect("Files/Home.jsp");
 						
 					}
 					else out.print("Something went wrong try again");

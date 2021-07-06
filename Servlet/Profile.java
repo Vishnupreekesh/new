@@ -14,7 +14,7 @@ public class Profile extends HttpServlet{
 		
 		System.out.print("In Profile");
 		
-		response.sendRedirect("Profile.jsp");
+		response.sendRedirect("Files/Profile.jsp");
 		
 	}
 
