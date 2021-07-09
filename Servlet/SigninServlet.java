@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,6 @@ public class SigninServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
-
 		
 		try {
 			String pass=Password.doHashing(password);
@@ -36,7 +37,9 @@ public class SigninServlet extends HttpServlet {
 					System.out.print(obj.getFirstname());
 					HttpSession session=request.getSession();  
 			        session.setAttribute("name",obj.getFirstname()); 
-					response.sendRedirect("Files/Home.jsp");
+			        System.out.print("In signin Server");
+			        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
+		            reqDisp.forward(request, response);
 				
 				}
 				else {
@@ -54,9 +57,16 @@ public class SigninServlet extends HttpServlet {
 		
 	}
 	
-public void doGet(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
-		
+	public void doGet(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
+		String email=request.getParameter("email");
+		System.out.print(email);
+		if(email==null) {
+			RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Signin.html");
+	        reqDisp.forward(request, respond);
+	
+		}
 	}
+	
 
 
 }

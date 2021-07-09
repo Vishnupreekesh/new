@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,8 @@ public class SignupServlet extends HttpServlet{
 						
 						HttpSession session=request.getSession();  
 				        session.setAttribute("name",obj.getFirstname()); 
-						response.sendRedirect("Files/Home.jsp");
+				        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
+			            reqDisp.forward(request, response);
 						
 					}
 					else out.print("Something went wrong try again");

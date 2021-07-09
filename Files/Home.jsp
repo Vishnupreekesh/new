@@ -9,7 +9,7 @@
 
 <body>
 		<div class="signinform">
-		<form action="Logout.jsp" method="post">
+		<form action="Logout" method="post">
 			<%@ page import="javax.servlet.http.HttpSession" %>
 			<%
 			    String name=(String)session.getAttribute("name");  

@@ -1,6 +1,7 @@
 package filter;
 
 import javax.servlet.*;
+import javax.servlet.http.*;  
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,14 +31,12 @@ public class SigninFilter implements Filter {
 		HttpSession session =req.getSession();
 	
 		boolean loggedIn = session != null && session.getAttribute("name") != null;
-		 
-		if (loggedIn) {
-			
+			 
+		if (loggedIn || req.getRequestURI().endsWith("Signin") ) {
 			chain.doFilter(request, response);
 		}
 		else {
-			
-			res.sendRedirect("http://localhost:8081/userproject/Signin.html");
+			req.getRequestDispatcher("/Signin.html").forward(request, response);
 		}
 		
 	}
