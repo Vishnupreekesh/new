@@ -25,7 +25,6 @@ public class SigninServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		
 		try {
-			String pass=Password.doHashing(password);
 			User obj=Connector.signin(email);
 			PrintWriter out=response.getWriter();
 
@@ -33,6 +32,7 @@ public class SigninServlet extends HttpServlet {
 				out.print("Invalid Username");
 			}
 			else {
+				String pass=Password.doHashing(password);
 				if(pass.equals(obj.getPassword())){
 					System.out.print(obj.getFirstname());
 					HttpSession session=request.getSession();  
@@ -58,6 +58,7 @@ public class SigninServlet extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
+		
 		String email=request.getParameter("email");
 		System.out.print(email);
 		if(email==null) {

@@ -27,28 +27,35 @@ public class SignupServlet extends HttpServlet{
 		String password=request.getParameter("password");
 		try {
 			PrintWriter out=response.getWriter();
-
-			if(Connector.userAvailable(email)) {
-				out.print("Email Already Available");
-			}
-			else {
-				if(Password.validatePassword(password)) {
-					password=Password.doHashing(password);
-					if(Query.createuser(firstname, lastname, email, password)) {
-						User obj=Connector.signin(email);
-						
-						HttpSession session=request.getSession();  
-				        session.setAttribute("name",obj.getFirstname()); 
-				        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
-			            reqDisp.forward(request, response);
-						
-					}
-					else out.print("Something went wrong try again");
+			User obj1=Connector.signin(email);
+			System.out.println(obj1);
+			if(obj1==null) {
+				if(Connector.userAvailable(email)) {
+					out.print("Email Already Available");
 				}
 				else {
-					out.print("Invalid Password");
+					if(Password.validatePassword(password)) {
+						password=Password.doHashing(password);
+						if(Query.createuser(firstname, lastname, email, password)) {
+							User obj=Connector.signin(email);
+							
+							HttpSession session=request.getSession();  
+					        session.setAttribute("name",obj.getFirstname()); 
+					        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
+				            reqDisp.forward(request, response);
+							
+						}
+						else out.print("Something went wrong try again");
+					}
+					else {
+						out.print("Invalid Password");
+					}
+					
 				}
-				
+			}
+			else {
+				RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
+	            reqDisp.forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -58,7 +65,13 @@ public class SignupServlet extends HttpServlet{
 	}
 	
 	public void doGet(HttpServletRequest request,HttpServletResponse respond) throws IOException, ServletException {
-		
+		String email=request.getParameter("email");
+		System.out.print(email);
+		if(email==null) {
+			RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Signin.html");
+	        reqDisp.forward(request, respond);
+	
+		}
 	}
 
 

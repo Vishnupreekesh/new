@@ -29,10 +29,10 @@ public class SigninFilter implements Filter {
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpServletResponse res=(HttpServletResponse) response;
 		HttpSession session =req.getSession();
-	
+		
 		boolean loggedIn = session != null && session.getAttribute("name") != null;
 			 
-		if (loggedIn || req.getRequestURI().endsWith("Signin") ) {
+		if (loggedIn || req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Signup")) {
 			chain.doFilter(request, response);
 		}
 		else {
