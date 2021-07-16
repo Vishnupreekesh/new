@@ -41,8 +41,9 @@ public class SignupServlet extends HttpServlet{
 							
 							HttpSession session=request.getSession();  
 					        session.setAttribute("name",obj.getFirstname()); 
-					        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
-				            reqDisp.forward(request, response);
+							response.sendRedirect("Home");
+//					        RequestDispatcher reqDisp = request.getRequestDispatcher("/Home");
+//				            reqDisp.forward(request, response);
 							
 						}
 						else out.print("Something went wrong try again");
@@ -54,7 +55,7 @@ public class SignupServlet extends HttpServlet{
 				}
 			}
 			else {
-				RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
+				RequestDispatcher reqDisp = request.getRequestDispatcher("/Home");
 	            reqDisp.forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
