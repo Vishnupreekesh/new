@@ -9,7 +9,7 @@
 
 <body>
 		<div class="signinform">
-		<form action="Home" method="post">
+		<form action="Logout" method="post">
 			<%@ page import="javax.servlet.http.HttpSession" %>
 			<%
 			    String name=(String)session.getAttribute("name");  
@@ -20,7 +20,7 @@
 			
 		</form>
 		
-		<form action="profile" method="post">
+		<form action="Profile.jsp" method="post">
 		
 			<br><input type="submit" class="button" value="Profile">
 		

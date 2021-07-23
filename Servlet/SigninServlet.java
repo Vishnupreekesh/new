@@ -38,10 +38,7 @@ public class SigninServlet extends HttpServlet {
 					HttpSession session=request.getSession();  
 			        session.setAttribute("name",obj.getFirstname()); 
 			        System.out.print("In signin Server");
-					response.sendRedirect("Home");
-
-//			        RequestDispatcher reqDisp = getServletContext().getRequestDispatcher("/Files/Home.jsp");
-//		            reqDisp.forward(request, response);
+					response.sendRedirect("Home.jsp");
 				
 				}
 				else {

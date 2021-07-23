@@ -41,10 +41,7 @@ public class SignupServlet extends HttpServlet{
 							
 							HttpSession session=request.getSession();  
 					        session.setAttribute("name",obj.getFirstname()); 
-							response.sendRedirect("Home");
-//					        RequestDispatcher reqDisp = request.getRequestDispatcher("/Home");
-//				            reqDisp.forward(request, response);
-							
+							response.sendRedirect("Home.jsp");	
 						}
 						else out.print("Something went wrong try again");
 					}
