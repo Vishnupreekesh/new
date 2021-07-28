@@ -40,8 +40,8 @@ public class SignupServlet extends HttpServlet{
 							User obj=Connector.signin(email);
 							
 							HttpSession session=request.getSession();  
-					        session.setAttribute("name",obj.getFirstname()); 
-							response.sendRedirect("Home.jsp");	
+					        session.setAttribute("name",email); 
+							response.sendRedirect("Files/Home.jsp");	
 						}
 						else out.print("Something went wrong try again");
 					}

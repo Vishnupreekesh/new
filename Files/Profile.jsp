@@ -9,10 +9,13 @@
 <body>
 
 <h3>In Profile</h3>
+
+<%@ page import="Main.User"%>
+<%@ page import="Main.Connector"%>
 <% 
-	
 	String name=(String)session.getAttribute("name");  
-	out.print("<h3>Hello, "+name+"</h3><br>");  
+	User obj= Connector.signin(name);
+	out.print("<h3>Hello "+obj.getFirstname()+" "+obj.getLastname()+"</h3>");  
 
 
 %>

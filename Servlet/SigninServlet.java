@@ -36,9 +36,9 @@ public class SigninServlet extends HttpServlet {
 				if(pass.equals(obj.getPassword())){
 					System.out.print(obj.getFirstname());
 					HttpSession session=request.getSession();  
-			        session.setAttribute("name",obj.getFirstname()); 
+			        session.setAttribute("name",email); 
 			        System.out.print("In signin Server");
-					response.sendRedirect("Home.jsp");
+					response.sendRedirect("Files/Home.jsp");
 				
 				}
 				else {

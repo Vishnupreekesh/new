@@ -13,7 +13,7 @@
   
   <filter-mapping>
   <filter-name>filter</filter-name>
-  <url-pattern>/*</url-pattern> 
+  <url-pattern>/Files/*</url-pattern> 
   
   </filter-mapping> 
   
@@ -54,7 +54,7 @@
   
   <servlet-mapping>
   <servlet-name>logout</servlet-name>
-  <url-pattern>/Logout</url-pattern>
+  <url-pattern>/Logout.jsp</url-pattern>
   </servlet-mapping>
   
   
@@ -67,6 +67,7 @@
   <servlet-name>profile</servlet-name>
   <url-pattern>/Profile.jsp</url-pattern>
   </servlet-mapping>
+  
  </web-app>
 
 

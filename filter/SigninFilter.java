@@ -31,8 +31,7 @@ public class SigninFilter implements Filter {
 		HttpSession session =req.getSession();
 		
 		boolean loggedIn = session != null && session.getAttribute("name") != null;
-		boolean logg=req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Signup");
-			 
+		boolean logg=req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Logout.jsp"); 
 		if (loggedIn ||logg ) {
 			chain.doFilter(request, response);
 		}
