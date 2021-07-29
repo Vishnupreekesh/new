@@ -17,8 +17,9 @@
 	String newpassword=Password.doHashing(request.getParameter("newpass"));
 	String conformpass=Password.doHashing(request.getParameter("conformnewpass"));
 	String email=(String)session.getAttribute("name");  
-	User obj= Connector.signin(email);
 	
+	String id=(String)session.getAttribute("id");
+	User obj=(User)request.getAttribute(id);
 	if(obj.getPassword().equals(oldpassword)){
 		if(newpassword.equals(conformpass)){
 			if(Query.changePassword(email, newpassword)) {

@@ -13,11 +13,9 @@
 <%@ page import="Main.User"%>
 <%@ page import="Main.Connector"%>
 <% 
-	String name=(String)session.getAttribute("name");  
-	User obj= Connector.signin(name);
+    String id=(String)session.getAttribute("id");
+    User obj=(User)request.getAttribute(id);
 	out.print("<h3>Hello "+obj.getFirstname()+" "+obj.getLastname()+"</h3>");  
-
-
 %>
 
 </body>

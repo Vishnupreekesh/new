@@ -39,8 +39,11 @@ public class SignupServlet extends HttpServlet{
 						if(Query.createuser(firstname, lastname, email, password)) {
 							User obj=Connector.signin(email);
 							
-							HttpSession session=request.getSession();  
-					        session.setAttribute("name",email); 
+					        HttpSession session=request.getSession();  
+					        session.setAttribute("Object",obj);
+					        String ssnId = session.getId();
+					        session.setAttribute("id", ssnId);
+					        
 							response.sendRedirect("Files/Home.jsp");	
 						}
 						else out.print("Something went wrong try again");

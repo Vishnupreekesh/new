@@ -16,8 +16,12 @@
 			<%@ page import="java.util.ArrayList" %>
 			
 			<%
-			    String name=(String)session.getAttribute("name");  
-				User obj= Connector.signin(name);
+				String id=(String)session.getAttribute("id");
+				User obj=(User)request.getAttribute(id);
+				
+				System.out.println(id);
+				System.out.println(obj);
+				
   				out.print("<h3>Hello "+obj.getFirstname()+" "+obj.getLastname()+"</h3>");  
   				
   				out.print("<h4>Email :<h4>");

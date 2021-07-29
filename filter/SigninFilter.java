@@ -14,10 +14,16 @@ import Main.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;  
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;  
 
 
 public class SigninFilter implements Filter {
+	
+	private static final int Integer = 0;
+	public static HashMap<String,Object> map=new HashMap<String,Object>();
+	
 	
 	public void init(FilterConfig fConfig) throws ServletException {
         
@@ -28,11 +34,16 @@ public class SigninFilter implements Filter {
 		System.out.print("In Filter");
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpServletResponse res=(HttpServletResponse) response;
-		HttpSession session =req.getSession();
 		
-		boolean loggedIn = session != null && session.getAttribute("name") != null;
-		boolean logg=req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Logout.jsp"); 
-		if (loggedIn ||logg ) {
+		HttpSession session =req.getSession();
+		String id=(String)session.getAttribute("id");
+		User obj=(User) session.getAttribute("Object");
+		System.out.print(id);
+		map.put(id,obj);
+		if(id!=null) request.setAttribute(id, obj);
+		boolean loggedIn = session != null && session.getAttribute("Object") != null;
+//		boolean logg=req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Logout.jsp"); 
+		if (loggedIn) {
 			chain.doFilter(request, response);
 		}
 		else {
