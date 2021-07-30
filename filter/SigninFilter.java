@@ -41,6 +41,7 @@ public class SigninFilter implements Filter {
 		System.out.print(id);
 		map.put(id,obj);
 		if(id!=null) request.setAttribute(id, obj);
+		
 		boolean loggedIn = session != null && session.getAttribute("Object") != null;
 //		boolean logg=req.getRequestURI().endsWith("Signin")||req.getRequestURI().endsWith("Logout.jsp"); 
 		if (loggedIn) {

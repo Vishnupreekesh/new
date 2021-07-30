@@ -9,18 +9,17 @@
 
 <body>
 		<div class="signinform">
-		<form action="Logout.jsp" method="post">
+		<form action="Signout.jsp" method="post">
 			<%@ page import="javax.servlet.http.HttpSession" %>
 			<%@ page import="Main.User"%>
 			<%@ page import="Main.Connector"%>
 			<%@ page import="java.util.ArrayList" %>
 			
+			
 			<%
+			 
 				String id=(String)session.getAttribute("id");
 				User obj=(User)request.getAttribute(id);
-				
-				System.out.println(id);
-				System.out.println(obj);
 				
   				out.print("<h3>Hello "+obj.getFirstname()+" "+obj.getLastname()+"</h3>");  
   				
@@ -32,6 +31,7 @@
   				}
 				
 			%>
+		
 			<input type="submit" class="button" value="Logout"><br>
 			
 		</form>

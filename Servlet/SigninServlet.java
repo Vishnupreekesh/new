@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import Main.Password;
 import Main.User;
 
 public class SigninServlet extends HttpServlet {
+	public static HashMap<Date,String> map=new HashMap<Date,String>();
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String email=request.getParameter("email");
@@ -39,6 +43,17 @@ public class SigninServlet extends HttpServlet {
 			        session.setAttribute("Object",obj);
 			        String ssnId = session.getId();
 			        session.setAttribute("id", ssnId);
+			        
+			        if(!session.isNew()){
+			        	Date date=new Date(session.getLastAccessedTime());
+						map.put(date, ssnId);
+					}
+			        else {
+			        	Date date=new Date(session.getCreationTime());
+			        	map.put(date, ssnId);
+			        }
+			        
+			        session.setAttribute("session", map);
 			        System.out.print("In signin Server");
 					response.sendRedirect("Files/Home.jsp");
 				

@@ -57,6 +57,16 @@
   <url-pattern>/Logout.jsp</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>logout</servlet-name>
+  <servlet-class>Servlet.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>logout</servlet-name>
+  <url-pattern>/Signout.jsp</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
   <servlet-name>profile</servlet-name>
